@@ -1,0 +1,12 @@
+/home/ivan/dio/person_api/src/main/java/com/dio/personapi/entity/Person.java
+/home/ivan/dio/person_api/src/main/java/com/dio/personapi/dto/response/MessageResponseDTO.java
+/home/ivan/dio/person_api/src/main/java/com/dio/personapi/mapper/PersonMapper.java
+/home/ivan/dio/person_api/src/main/java/com/dio/personapi/exception/PersonNotFoundException.java
+/home/ivan/dio/person_api/src/main/java/com/dio/personapi/PersonapiApplication.java
+/home/ivan/dio/person_api/src/main/java/com/dio/personapi/dto/request/PersonDTO.java
+/home/ivan/dio/person_api/src/main/java/com/dio/personapi/enums/PhoneType.java
+/home/ivan/dio/person_api/src/main/java/com/dio/personapi/dto/request/PhoneDTO.java
+/home/ivan/dio/person_api/src/main/java/com/dio/personapi/controller/PersonController.java
+/home/ivan/dio/person_api/src/main/java/com/dio/personapi/entity/Phone.java
+/home/ivan/dio/person_api/src/main/java/com/dio/personapi/service/PersonService.java
+/home/ivan/dio/person_api/src/main/java/com/dio/personapi/repository/PersonRepository.java
