@@ -52,7 +52,7 @@ public class WorstFilmService {
     }
 
     private FilmDTO filmDTO(String[] film){
-        Boolean winner = (film.length == 5 ? film[4].trim().equals("yes") : false ) ;
+        Boolean winner = (film.length == 5 && film[4].trim().equals("yes")) ;
         return new FilmDTO(
                 null,
                 Integer.parseInt(film[0].trim()),
@@ -65,8 +65,8 @@ public class WorstFilmService {
     private List<ProducerDTO> listProductorsDTO(String strProductors){
         List<ProducerDTO> listProducer = new ArrayList<>();
         String[] listStrProductor = strProductors.split(",");
-        for(int i = 0 ; i < listStrProductor.length ; i++){
-            listProducer.add(worstFilmMapper.toDTO(findCreateProducer(listStrProductor[i].trim())));
+        for (String s : listStrProductor) {
+            listProducer.add(worstFilmMapper.toDTO(findCreateProducer(s.trim())));
         }
         return listProducer;
     }
@@ -81,8 +81,8 @@ public class WorstFilmService {
     private List<StudioDTO> listStudiosDTO(String studios){
         List<StudioDTO> listStudiosDTO = new ArrayList<>();
         String[] studio = studios.split(",");
-        for(int i = 0 ; i < studio.length ; i++){
-            listStudiosDTO.add(worstFilmMapper.toDTO( findCreateStudio(studio[i].trim())));
+        for (String s : studio) {
+            listStudiosDTO.add(worstFilmMapper.toDTO(findCreateStudio(s.trim())));
         }
         return listStudiosDTO;
     }
@@ -126,11 +126,11 @@ public class WorstFilmService {
 
         Integer finalMinInterval = minInterval;
         List<IntervalAward> minIntervalAwards = listIntervalAward.stream()
-                .filter(p -> p.getInterval() == finalMinInterval ).collect(Collectors.toList());
+                .filter(p -> Objects.equals(p.getInterval(), finalMinInterval)).collect(Collectors.toList());
 
         Integer finalMaxInterval = maxInterval;
         List<IntervalAward> maxIntervalAwards = listIntervalAward.stream()
-                .filter(p -> p.getInterval() == finalMaxInterval).collect(Collectors.toList());
+                .filter(p -> Objects.equals(p.getInterval(), finalMaxInterval)).collect(Collectors.toList());
 
         List<Film> allFilms = worstFilmRepository.findAll();
         HashMap<String, Object> map = new HashMap<>();
