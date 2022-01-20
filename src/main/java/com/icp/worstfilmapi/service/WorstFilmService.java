@@ -43,6 +43,7 @@ public class WorstFilmService {
     }
 
     private void handleLine(String line) {
+        line = line.replaceAll(" and ", ",");
         String[] film = line.split(";");
 
         FilmDTO filmDTO = filmDTO(film);
@@ -111,7 +112,7 @@ public class WorstFilmService {
                     intervalAward.setProducer(producer.getName());
                     intervalAward.setInterval(0);
                     intervalAward.setPreviousWin(film.getYear());
-                    intervalAward.setFollowingWin(0);
+                    intervalAward.setFollowingWin(film.getYear());
                 } else {
                     if (intervalAward.getFollowingWin() < film.getYear()){
                         intervalAward.setFollowingWin(film.getYear());
@@ -126,11 +127,11 @@ public class WorstFilmService {
 
         Integer finalMinInterval = minInterval;
         List<IntervalAward> minIntervalAwards = listIntervalAward.stream()
-                .filter(p -> Objects.equals(p.getInterval(), finalMinInterval)).collect(Collectors.toList());
+                .filter(p -> p.getInterval().equals(finalMinInterval) ).collect(Collectors.toList());
 
         Integer finalMaxInterval = maxInterval;
         List<IntervalAward> maxIntervalAwards = listIntervalAward.stream()
-                .filter(p -> Objects.equals(p.getInterval(), finalMaxInterval)).collect(Collectors.toList());
+                .filter(p -> p.getInterval().equals(finalMaxInterval)).collect(Collectors.toList());
 
         List<Film> allFilms = worstFilmRepository.findAll();
         HashMap<String, Object> map = new HashMap<>();
